@@ -35,22 +35,26 @@ public class ControllerTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
+    TestController testController;
+
 
     private MockMvc mockMvc;
-    RequestMatcher pleaseWork;
+
 
     @Before
     public void setUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+        this.testController = new TestController();
     }
 
 
     @Test
     public void helloWorldTest() throws Exception {
         String x = "HelloWorld!";
-        MockHttpServletRequestBuilder query = post("/hello").contentType(MediaType.APPLICATION_JSON);
+        MockHttpServletRequestBuilder query = get("/hello").contentType(MediaType.APPLICATION_JSON);
        // mockMvc.perform(query).andDo(MockMvcResultHandlers.print());
         mockMvc.perform(query).andExpect(status().is4xxClientError());
       //  mockMvc.perform(get("/hello").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+        System.out.println(testController.helloWorld());
     }
 }
