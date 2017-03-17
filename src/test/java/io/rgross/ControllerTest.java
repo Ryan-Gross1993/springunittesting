@@ -50,7 +50,7 @@ public class ControllerTest {
         String x = "HelloWorld!";
         MockHttpServletRequestBuilder query = post("/hello").contentType(MediaType.APPLICATION_JSON);
        // mockMvc.perform(query).andDo(MockMvcResultHandlers.print());
-        mockMvc.perform(query).andExpect(status().isOk());
+        mockMvc.perform(query).andExpect(status().is4xxClientError());
       //  mockMvc.perform(get("/hello").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
 }
